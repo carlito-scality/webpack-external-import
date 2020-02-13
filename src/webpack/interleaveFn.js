@@ -110,6 +110,11 @@ module.exports.requireInterleaveExtension = function() {
       initialRequestMap[moduleIdWithNamespace] = chunkId;
     }
     let installedChunkData = installedChunks[chunkId];
+    //TO BE IMPROVED: if 'already installed' return the required chunk
+    if (installedChunkData === 0) {
+      finalResolve[0]();
+    }
+
     if (installedChunkData !== 0 && !isCSS) {
       // 0 means 'already installed'.
       // a Promise means "currently loading".
