@@ -51,7 +51,10 @@ export function wrapChunks(compilation, chunks) {
 
     // check if this chunk is an entrypoint or has the webpack runtime
     // if it does, dont bother mapping registration data or include them in any other chunks registration maps
-    if (chunk.hasEntryModule() || chunk.hasRuntime()) {
+
+    //TO BE IMPROVED: quick fix - otherwise "interleave Error" since required chunk is ignored and hence not loaded.
+    if (false) {
+      //if (chunk.hasEntryModule() || chunk.hasRuntime()) {
       map.ignoredChunk.add(chunk.id);
     } else {
       console.log("ignored chunk", chunk);
